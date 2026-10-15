@@ -1,0 +1,2 @@
+# Test 34: inside a condition CLR does not offer = += -= ; ] relop
+RESULT CLR REJECTED token=id line=1 col=12 step=10 reduces=0 expected=% && ) * + - / ||

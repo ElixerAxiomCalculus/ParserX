@@ -1,0 +1,7 @@
+# Zoo: expression grammar, Aho, Lam, Sethi & Ullman, Compilers (2nd ed.),
+# grammar (4.1), used for the SLR construction (Example 4.48).
+# expected: SLR(1) not-LR(0)
+# Why: the state with E -> T . and T -> T . * F needs a lookahead.
+E -> E + T | T
+T -> T * F | F
+F -> ( E ) | id

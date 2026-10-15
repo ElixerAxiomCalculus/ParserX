@@ -1,0 +1,3 @@
+# Test 31 (edge): Windows CRLF line endings in the grammar file
+level 1  %left  +
+TREE CLR: [E [E a + b] + c]

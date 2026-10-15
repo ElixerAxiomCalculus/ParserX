@@ -1,0 +1,2 @@
+# Test 37: --max-errors 1 stops after the first error
+RECOVERY CLR errors=1 skipped=0 first=1:5 stopped="error limit of 1 reached"

@@ -1,0 +1,13 @@
+# Zoo: a Pascal subset (program, begin/end blocks, :=, if-then-else,
+# while-do, empty statements, div and not). Wirth's grammar has the same
+# dangling else as C.
+# expected: not-LR(1)
+program -> PROGRAM id ; block .
+block   -> BEGIN stmts END
+stmts   -> stmts ; stmt | stmt
+stmt    -> id := expr | IF expr THEN stmt | IF expr THEN stmt ELSE stmt
+stmt    -> WHILE expr DO stmt | block | eps
+expr    -> simple | simple relop simple
+simple  -> simple + term | simple - term | term
+term    -> term * factor | term DIV factor | factor
+factor  -> id | num | ( expr ) | NOT factor

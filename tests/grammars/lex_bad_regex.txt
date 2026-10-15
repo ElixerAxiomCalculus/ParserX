@@ -1,0 +1,2 @@
+%lexer lex_bad_regex.lex
+S -> num

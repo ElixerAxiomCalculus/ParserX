@@ -1,0 +1,6 @@
+# Test 47: about 10^5 tokens within the time budget
+re:^Tokens: 1[0-9]{5} 
+RESULT SLR ACCEPTED
+RESULT PGM ACCEPTED
+RESULT SEMANTIC-OK warnings=0 declarations=2
+TIME OK

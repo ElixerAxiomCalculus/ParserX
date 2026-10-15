@@ -1,0 +1,4 @@
+# Test 35 (edge): a cycle in includes is one SCC of the digraph traversal
+1 non-trivial SCCs
+VERIFY LALR dp==merge OK
+RESULT LALR ACCEPTED

@@ -1,0 +1,8 @@
+# Test 32: nested groups and classes; equal-length matches go to the earlier rule (kw before name)
+1     1     kw      abc
+1     5     name    abcd
+1     10    hex     0xfF09
+1     17    chain   ababcde
+1     25    chain   e
+1     27    chain   cde
+RESULT CLR ACCEPTED

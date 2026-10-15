@@ -1,0 +1,6 @@
+# Test 46: benchmark lines are present (timings are not checked)
+re:^BENCH build SLR median_us=[0-9.]+ min_us=[0-9.]+$
+re:^BENCH build LALR-dp median_us=
+re:^BENCH parse CLR median_us=[0-9.]+ min_us=[0-9.]+ tokens_per_s=
+re:^BENCH scale tokens=[0-9]+ lex_us=
+Repetitions: 3

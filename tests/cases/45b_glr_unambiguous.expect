@@ -1,0 +1,2 @@
+# Test 45: an unambiguous v1 input has exactly one parse
+GLR accepted parses=1 

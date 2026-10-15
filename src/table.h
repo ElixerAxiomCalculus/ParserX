@@ -10,7 +10,7 @@
 #include "first_follow.h"
 #include "grammar.h"
 
-enum class ActionType { SHIFT, REDUCE, ACCEPT };
+enum class ActionType { SHIFT, REDUCE, ACCEPT, ERROR };
 
 struct Action {
     ActionType type = ActionType::SHIFT;
@@ -27,9 +27,10 @@ struct Conflict {
     std::string existing;
     std::string incoming;
     std::string resolution;
+    bool byPrecedence = false;
 };
 
-enum class MachineKind { SLR, CLR, LALR };
+enum class MachineKind { SLR, CLR, LALR, LR0, PGM };
 
 struct ItemRep {
     int prod = 0;
@@ -42,6 +43,7 @@ struct State {
     std::vector<ItemRep> items;
     std::map<std::string, int> transitions;
     std::string note;
+    std::vector<int> mergedFrom;
 };
 
 struct LRMachine {
@@ -58,10 +60,17 @@ struct ParsingTable {
     std::map<int, std::map<std::string, Action> > action;
     std::map<int, std::map<std::string, int> > gotos;
     std::vector<Conflict> conflicts;
+    std::map<int, std::map<std::string, std::vector<Action> > > candidates;
+    std::set<std::pair<int, std::string> > conflictCells;
+    std::set<std::pair<int, std::string> > errorCells;
+    int nonassocErrors = 0;
 
     const Action* findAction(int state, const std::string& symbol) const;
     int srConflicts() const;
     int rrConflicts() const;
+    int srPrecConflicts() const;
+    int rawSrConflicts() const;
+    int rawRrConflicts() const;
     int actionEntries() const;
     int gotoEntries() const;
     int totalEntries() const { return actionEntries() + gotoEntries(); }

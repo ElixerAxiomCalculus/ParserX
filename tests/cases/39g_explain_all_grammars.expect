@@ -1,0 +1,4 @@
+# Test 39: no unverified witness anywhere
+!verified=no
+re:^CHECKED [0-9]+ grammars$
+grammar/language_v2.txt: EXPLAIN SLR state=21

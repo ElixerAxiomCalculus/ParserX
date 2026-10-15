@@ -1,0 +1,6 @@
+# Test 34: ambiguous v2 expressions + precedence: same unresolved conflicts as v2, fewer states, 417 instead of 582 steps
+TABLE SLR states=98 action=823 goto=107 sr=4 rr=0 sr_prec=41 nonassoc=0
+TABLE LALR states=98 action=818 goto=107 sr=1 rr=0 sr_prec=41 nonassoc=0
+TABLE CLR states=443 action=3227 goto=442 sr=2 rr=0 sr_prec=327 nonassoc=0
+RESULT SLR ACCEPTED steps=417
+RESULT CLR ACCEPTED steps=417

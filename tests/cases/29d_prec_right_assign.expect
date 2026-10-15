@@ -1,0 +1,4 @@
+# Test 29: %right = groups to the right, %left + to the left
+resolved by SHIFT (precedence: '=' = '=', %right)
+TREE SLR: [E a = [E b = [E [E c + d] + e]]]
+TREE CLR: [E a = [E b = [E [E c + d] + e]]]

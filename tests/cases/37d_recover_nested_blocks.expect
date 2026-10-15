@@ -1,0 +1,4 @@
+# Test 37: error inside nested blocks; parsing resumes inside the inner block
+RECOVERY SLR errors=1 skipped=1 first=1:9
+RECOVERY CLR errors=1 skipped=1 first=1:9
+!stopped=

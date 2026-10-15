@@ -1,0 +1,1 @@
+--grammar tests/grammars/single_production.txt --fuzz 20

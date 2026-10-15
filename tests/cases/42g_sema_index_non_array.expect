@@ -1,0 +1,2 @@
+# Test 42: indexing a non-array
+SEMANTIC ERROR line 2 col 3: indexing a non-array 'x' of type int

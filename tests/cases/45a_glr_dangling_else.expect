@@ -1,0 +1,4 @@
+# Test 45: GLR on the unresolved v1 table finds both readings of the dangling else
+GLR accepted parses=2 
+ambiguous S over tokens 0..20 (2 alternatives)
+RESULT CLR ACCEPTED

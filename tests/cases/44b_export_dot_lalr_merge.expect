@@ -1,0 +1,4 @@
+# Test 44: LALR merge view
+  c4 [label="CLR 4\nLALR 4", fillcolor="#d9d2e9", color=red, penwidth=3];
+  c7 [label="CLR 7\nLALR 4", fillcolor="#d9d2e9", color=red, penwidth=3];
+CLR STATES 15

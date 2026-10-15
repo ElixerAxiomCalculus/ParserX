@@ -1,15 +1,20 @@
 #!/usr/bin/env bash
-# Runs every test case in tests/cases on the SLR, LALR and CLR parsers,
-# saves the full output to tests/output/<case>.out and checks it.
+# Runs every test case in tests/cases on the parsers, saves the full output
+# to tests/output/<case>.out and checks it.
 #
 # Each case has:
-#   <case>.src     the source program given to the parser
-#   <case>.args    (optional) extra options, e.g. --grammar FILE
 #   <case>.expect  one check per line:
 #                    text      the output must contain this text
 #                    !text     the output must NOT contain this text
 #                    re:REGEX  some output line must match this regex
-#                    # ...     comment (the expected outcome from the document)
+#                    # ...     comment (the expected outcome in words)
+# and either
+#   <case>.src     the source program given to the parser, with
+#   <case>.args    (optional) extra options, e.g. --grammar FILE
+# or
+#   <case>.cmd     a bash script run from the project root; $BIN is the
+#                  parserx executable and $OUT a scratch directory. Used for
+#                  generated inputs and for comparing several runs.
 #
 # Usage (from the project root):  bash tests/run_tests.sh [path-to-parserx]
 
@@ -20,18 +25,24 @@ if [ ! -x "$BIN" ]; then
     echo "parserx executable not found; build it first (make, or see README)" >&2
     exit 1
 fi
+export BIN
 
-mkdir -p tests/output
+mkdir -p tests/output tests/output/scratch
 pass=0
 fail=0
 failed=()
-for src in tests/cases/*.src; do
-    name=$(basename "$src" .src)
-    args=""
-    [ -f "tests/cases/$name.args" ] && args=$(cat "tests/cases/$name.args")
+for expect in tests/cases/*.expect; do
+    name=$(basename "$expect" .expect)
     out="tests/output/$name.out"
-    # shellcheck disable=SC2086
-    "$BIN" $args --input "$src" > "$out" 2>&1
+    if [ -f "tests/cases/$name.cmd" ]; then
+        OUT="tests/output/scratch/$name" bash "tests/cases/$name.cmd" > "$out" 2>&1
+    else
+        args=""
+        [ -f "tests/cases/$name.args" ] && args=$(tr -d '\r' < "tests/cases/$name.args")
+        # shellcheck disable=SC2086
+        "$BIN" $args --input "tests/cases/$name.src" > "$out" 2>&1
+        echo "EXIT $?" >> "$out"
+    fi
     ok=1
     while IFS= read -r check || [ -n "$check" ]; do
         check="${check%$'\r'}"
@@ -54,7 +65,7 @@ for src in tests/cases/*.src; do
                     ok=0
                 fi ;;
         esac
-    done < "tests/cases/$name.expect"
+    done < "$expect"
     if [ $ok -eq 1 ]; then
         echo "PASS  $name"
         pass=$((pass + 1))

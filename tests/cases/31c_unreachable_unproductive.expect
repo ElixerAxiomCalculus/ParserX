@@ -1,0 +1,5 @@
+# Test 31 (edge): unreachable and unproductive non-terminals are warned about with line numbers
+Warning: line 2: non-terminal X is unreachable from the start symbol
+Warning: line 3: non-terminal Y cannot derive any terminal string (unproductive)
+Warning: line 3: non-terminal Y is unreachable from the start symbol
+RESULT LALR ACCEPTED

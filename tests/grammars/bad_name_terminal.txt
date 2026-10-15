@@ -1,0 +1,2 @@
+S -> id
+%name id "identifier"

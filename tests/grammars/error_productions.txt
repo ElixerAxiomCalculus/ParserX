@@ -1,0 +1,6 @@
+# Yacc-style error productions: the terminal 'error' is special
+P  -> SL
+SL -> SL S | S
+S  -> id = E ; | error ;
+E  -> E + T | T
+T  -> id | num

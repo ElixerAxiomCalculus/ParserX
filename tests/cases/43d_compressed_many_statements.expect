@@ -1,0 +1,4 @@
+# Test 43: 10000 statements with compressed tables
+RESULT SLR ACCEPTED
+RESULT CLR ACCEPTED
+RESULT PGM ACCEPTED

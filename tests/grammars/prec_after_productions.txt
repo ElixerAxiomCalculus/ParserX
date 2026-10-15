@@ -1,0 +1,4 @@
+# Precedence directives may appear after the productions
+E -> E + E | E * E | id
+%left +
+%left *

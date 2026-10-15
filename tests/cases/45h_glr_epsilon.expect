@@ -1,0 +1,2 @@
+# Test 45: GLR with epsilon productions
+GLR accepted parses=1 

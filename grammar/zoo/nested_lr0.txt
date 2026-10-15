@@ -1,0 +1,3 @@
+# Zoo: a^n c b^n. Every completed item is alone in its LR(0) state.
+# expected: LR(0)
+S -> a S b | c

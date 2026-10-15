@@ -1,0 +1,6 @@
+# Test 38: v2 - the SLR l-value conflict, resolved by shift, never changes acceptance on 1000 inputs; SLR only detects errors later
+FUZZ SLR inputs=1000 accepted=298 mean_delay=0.302 max_delay=7 mean_expected=9.132 median_delay=0.000 valid_rejected=0
+FUZZ LALR inputs=1000 accepted=298 mean_delay=0.296 max_delay=7 mean_expected=9.141
+FUZZ CLR inputs=1000 accepted=298 mean_delay=0.000 max_delay=0 mean_expected=6.536
+FUZZ AGREEMENT inputs=1000 agree=1000 disagreements=0
+FUZZ INVARIANTS OK

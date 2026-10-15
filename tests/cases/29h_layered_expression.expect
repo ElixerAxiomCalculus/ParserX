@@ -1,0 +1,9 @@
+# Test 29: the layered grammar has no conflicts but pays for unit reductions (4 more steps than 29a)
+TABLE SLR states=19 action=94 goto=13 sr=0 rr=0
+TABLE CLR states=36 action=161 goto=23 sr=0 rr=0
+!sr_prec
+reduce 6 (T -> F)
+reduce 3 (E -> T)
+RESULT SLR ACCEPTED steps=23
+TREE LALR: [E [E a + [T b * c]] - [T d / e]]
+reduce 9 (F -> id)

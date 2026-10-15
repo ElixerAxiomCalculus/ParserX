@@ -1,0 +1,6 @@
+# Test 32 (edge): 3. and .5 are not numbers: the dot is an unknown character (documented choice)
+1     5     num     3
+RESULT LEXICAL-ERROR symbol='.' line=1 col=6
+RESULT LEXICAL-ERROR symbol='.' line=2 col=5
+2     6     num     5
+EXIT 3

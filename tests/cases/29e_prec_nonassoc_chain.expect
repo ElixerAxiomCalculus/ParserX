@@ -1,0 +1,6 @@
+# Test 29: %nonassoc < makes a < b < c a syntax error at the second <
+resolved as ERROR (precedence: '<' = '<', %nonassoc)
+re:^TABLE SLR .* sr=0 rr=0 sr_prec=4 nonassoc=1$
+RESULT SLR REJECTED token=< line=1 col=7 step=5 reduces=1 expected=$ +
+RESULT LALR REJECTED token=< line=1 col=7 
+RESULT CLR REJECTED token=< line=1 col=7 

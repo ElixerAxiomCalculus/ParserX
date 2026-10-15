@@ -1,0 +1,3 @@
+# Test 42: storing a float in an int is an error
+SEMANTIC ERROR line 3 col 3: type mismatch: cannot assign float to int
+EXIT 5

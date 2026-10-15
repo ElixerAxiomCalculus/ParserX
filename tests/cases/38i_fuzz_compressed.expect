@@ -1,0 +1,4 @@
+# Test 38: with default reductions every parser - CLR too - reduces before detecting errors; acceptance and error token are unchanged
+FUZZ CLR inputs=1000 accepted=298 mean_delay=2.329 max_delay=12 mean_expected=4.601 median_delay=1.000 valid_rejected=0
+FUZZ AGREEMENT inputs=1000 agree=1000
+FUZZ INVARIANTS OK

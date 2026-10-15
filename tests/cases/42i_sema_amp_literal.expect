@@ -1,0 +1,4 @@
+# Test 42: & of a literal is already a syntax error in v2 (U -> & L needs an l-value), so semantics is skipped
+RESULT CLR REJECTED token=num line=2 col=7 
+SEMANTICS skipped (syntax errors)
+EXIT 1

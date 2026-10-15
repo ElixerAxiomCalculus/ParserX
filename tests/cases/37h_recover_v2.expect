@@ -1,0 +1,5 @@
+# Test 37: v2 uses %sync ; } and %recover S; the stray } after the skipped while is a cascade error
+Recovery (panic mode): 4 error(s) reported, 10 token(s) skipped
+Error 2: line 2, column 13
+Error 4: line 3, column 13
+RECOVERY CLR errors=4 skipped=10 first=1:9

@@ -1,0 +1,3 @@
+# Test 42: redeclaration in the same scope
+SEMANTIC ERROR line 2 col 5: redeclaration of 'x' in the same scope (first declared on line 1)
+EXIT 5

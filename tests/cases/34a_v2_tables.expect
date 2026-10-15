@@ -1,0 +1,12 @@
+# Test 34: v2 tables; the l-value conflict on = += -= exists only in SLR, dangling else in all three
+TABLE SLR states=103 action=815 goto=194 sr=4 rr=0
+TABLE LALR states=103 action=810 goto=194 sr=1 rr=0
+TABLE CLR states=444 action=3026 goto=751 sr=2 rr=0
+CONFLICT SLR shift/reduce on '=' state=21
+CONFLICT SLR shift/reduce on '+=' state=21
+CONFLICT SLR shift/reduce on '-=' state=21
+CONFLICT SLR shift/reduce on 'else'
+CONFLICT LALR shift/reduce on 'else'
+!CONFLICT LALR shift/reduce on '='
+!CONFLICT CLR shift/reduce on '='
+!CONFLICT CLR shift/reduce on '+='

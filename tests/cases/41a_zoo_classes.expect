@@ -1,0 +1,7 @@
+# Test 41: zoo classes
+!MISMATCH
+ZOO 15 grammars
+MATCH grammar/zoo/json.txt: LR(0)
+MATCH grammar/zoo/dragon_lvalue.txt: LALR(1) not-SLR(1)
+MATCH grammar/zoo/dragon_lr1_not_lalr.txt: LR(1) not-LALR(1)
+MATCH grammar/zoo/palindromes.txt: not-LR(1) (possibly ambiguous)

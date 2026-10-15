@@ -1,0 +1,3 @@
+# Test 47 (edge): a missing grammar file is a grammar error (exit 2)
+RESULT GRAMMAR-ERROR cannot open grammar file: grammar/nope.txt
+EXIT 2

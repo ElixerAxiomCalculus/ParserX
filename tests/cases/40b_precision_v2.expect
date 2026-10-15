@@ -1,0 +1,2 @@
+# Test 40: v2 - SLR has 8 reduce cells LALR does not (5 extra filled cells + 3 removed by the shift resolutions)
+PRECISION SLR=972 LALR=964 PGM=964 CLR=0 spurious_reduce_slr_vs_lalr=8 inflation_slr=2.178 inflation_lalr=2.167 inflation_pgm=2.167

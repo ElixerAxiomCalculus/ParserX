@@ -1,0 +1,5 @@
+# Test 47: 5000 levels of nesting with every parser including PGM
+RESULT SLR ACCEPTED
+RESULT CLR ACCEPTED
+RESULT PGM ACCEPTED
+EXIT 0

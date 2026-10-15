@@ -1,0 +1,6 @@
+# Test 33: array elements on both sides
+RESULT SLR ACCEPTED
+RESULT LALR ACCEPTED
+RESULT CLR ACCEPTED
+TREE CLR: [S [A [L a [ i ]] = [E [L b [ j ]] + 1]] ;]
+TREE SLR: [S [A [L a [ i ]] = [E [L b [ j ]] + 1]] ;]

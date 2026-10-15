@@ -1,0 +1,6 @@
+# Test 29: %prec UMINUS makes unary minus bind tighter than *
+(5) E -> - E   %prec UMINUS
+resolved by REDUCE (precedence: 'UMINUS' > '*')
+TREE SLR: [E [E - a] * b]
+TREE LALR: [E [E - a] * b]
+TREE CLR: [E [E - a] * b]

@@ -1,0 +1,5 @@
+# Test 38: CSV reproducibility
+SAME SEED IDENTICAL
+OTHER SEED DIFFERENT
+id,kind,length,clr_valid,SLR_accepted,SLR_steps,SLR_error_index,SLR_delay,SLR_expected,
+LINES 501

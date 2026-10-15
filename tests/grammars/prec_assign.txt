@@ -1,0 +1,5 @@
+# Right-associative = and left-associative + by precedence declarations
+%right =
+%left  +
+S -> E
+E -> E = E | E + E | id

@@ -1,0 +1,4 @@
+# includes relation with a cycle (an SCC in the digraph)
+S -> X
+X -> a Y | b
+Y -> c X | d

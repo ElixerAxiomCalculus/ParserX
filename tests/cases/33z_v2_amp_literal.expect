@@ -1,0 +1,5 @@
+# Test 33: & needs an l-value, so & of a literal is a syntax error
+RESULT SLR REJECTED token=num line=1 col=7 
+RESULT LALR REJECTED token=num line=1 col=7 
+RESULT CLR REJECTED token=num line=1 col=7 
+EXIT 1

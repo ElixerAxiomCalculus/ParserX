@@ -1,0 +1,5 @@
+# Test 43: %nonassoc error entries are kept explicit, so a default reduction cannot make a < b < c acceptable
+RESULT CLR REJECTED token=< line=1 col=7 
+RESULT SLR REJECTED token=< line=1 col=7 
+VERIFY COMPRESS CLR OK
+!ACCEPTED

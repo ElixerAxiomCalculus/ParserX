@@ -1,0 +1,4 @@
+int x = ;
+while ( x < ) { x = 1 ; }
+print ( x + ) ;
+y = 2 ;

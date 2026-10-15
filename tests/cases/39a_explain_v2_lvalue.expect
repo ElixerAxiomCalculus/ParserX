@@ -1,0 +1,6 @@
+# Test 39: FOLLOW provenance of the v2 SLR l-value conflict and its verified shortest witness
+FOLLOW provenance: '=' in FOLLOW(F) because F appears at the end of U -> F; '=' in FOLLOW(U) because U appears at the end of L -> * U; '=' in FOLLOW(L) because '=' can begin what follows L in A -> L = E
+competing: shift '=' (A -> L . = E) vs reduce F -> L
+EXPLAIN SLR state=21 symbol='=' witness="id =" verified=yes cause="FOLLOW(F) <- FOLLOW(U) <- FOLLOW(L) <- FIRST after L in A -> L = E"
+EXPLAIN SLR state=21 symbol='+=' witness="id +=" verified=yes
+EXPLAIN LALR state=89 symbol='else' witness="if ( id relop id ) { } else" verified=yes cause="inherited from CLR state(s) { 406, 429 }, a conflict before merging"

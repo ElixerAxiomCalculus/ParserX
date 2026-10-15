@@ -1,0 +1,47 @@
+# Zoo: ParserX language v2 (copy of grammar/language_v2.txt).
+# expected: not-LR(1)
+# Why: dangling else; the l-value conflict exists only for SLR.
+# ParserX language v2: a small C-like language. Tokens come from the
+# generated lexer (language_v2.lex). Statements may start with an l-value
+# (assignment  *p = x ;) or with an expression (*p ;), which embeds the
+# classic  S -> L = R | R  problem: SLR puts '=' into FOLLOW(F) through
+# L -> * U, U -> F, F -> L and gets shift/reduce conflicts on = += -=,
+# while LALR and CLR do not.
+%lexer     ../language_v2.lex
+%semantics v2
+%sync      ; }
+%recover   S
+
+%name SL "statement list"
+%name S  "statement"
+%name D  "declaration"
+%name TY "type"
+%name A  "assignment"
+%name L  "l-value"
+%name B  "condition"
+%name BA "condition"
+%name BN "condition"
+%name E  "expression"
+%name T  "term"
+%name U  "unary expression"
+%name F  "operand"
+
+P   -> SL
+SL  -> SL S | S
+S   -> D ; | A ; | E ;
+S   -> if ( B ) S | if ( B ) S else S
+S   -> while ( B ) S
+S   -> for ( A ; B ; A ) S
+S   -> print ( E ) ;
+S   -> { SL } | { }
+D   -> TY id | TY id = E | TY id [ num ]
+TY  -> int | float | TY *
+A   -> L = E | L += E | L -= E
+L   -> id | id [ E ] | * U
+B   -> B || BA | BA
+BA  -> BA && BN | BN
+BN  -> ! BN | E relop E | ( B )
+E   -> E + T | E - T | T
+T   -> T * U | T / U | T % U | U
+U   -> - U | & L | F
+F   -> L | num | real | ( E )

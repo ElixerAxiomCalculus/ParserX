@@ -1,0 +1,8 @@
+int v [ 5 ] ;
+int i ;
+for ( i = 0 ; i < 5 ; i += 1 ) v [ i ] = i * i ;
+int * p = & v [ 4 ] ;
+* p += 1 ;
+print ( v [ 4 ] ) ;
+int * * pp = & p ;
+print ( * * pp ) ;

@@ -1,0 +1,6 @@
+# Test 37: the first recovered error is the error found without recovery, for every parser
+RESULT SLR REJECTED token=; line=1 col=5 
+RESULT LALR REJECTED token=; line=1 col=5 
+RESULT CLR REJECTED token=; line=1 col=5 
+RESULT PGM REJECTED token=; line=1 col=5 
+re:^RECOVERY (SLR|LALR|CLR|PGM) .* first=1:5$

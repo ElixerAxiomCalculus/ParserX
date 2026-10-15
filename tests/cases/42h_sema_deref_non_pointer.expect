@@ -1,0 +1,2 @@
+# Test 42: dereferencing a non-pointer
+SEMANTIC ERROR line 2 col 1: dereferencing a non-pointer of type int

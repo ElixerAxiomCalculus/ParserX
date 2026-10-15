@@ -104,9 +104,20 @@ void FirstFollow::computeFirst() {
 }
 
 // FOLLOW sets
+// The first reason each terminal entered each FOLLOW set is kept for --explain
+void FirstFollow::addFollow(const string& B, const string& a, const FollowReason& why,
+                            bool& changed) {
+    if (!follow_[B].insert(a).second) return;
+    followWhy_[B][a] = why;
+    changed = true;
+}
+
 void FirstFollow::computeFollow() {
-    follow_[g_.startSymbol()].insert("$");
+    FollowReason seed;
+    seed.kind = FollowReason::SEED;
     bool changed = true;
+    addFollow(g_.augmentedStart(), "$", seed, changed);
+    addFollow(g_.startSymbol(), "$", seed, changed);
     while (changed) {
         changed = false;
         for (size_t k = 0; k < g_.productions().size(); ++k) {
@@ -116,21 +127,28 @@ void FirstFollow::computeFollow() {
                 if (!g_.isNonterminal(B)) continue;
                 vector<string> rest(p.rhs.begin() + (i + 1), p.rhs.end());
                 set<string> f = firstOfSequence(rest);
-                set<string>& target = follow_[B];
-                size_t before = target.size();
+                FollowReason why;
+                why.prod = p.id;
+                why.position = (int)i;
+                why.kind = FollowReason::FIRST_OF_REST;
                 for (set<string>::const_iterator it = f.begin(); it != f.end(); ++it) {
-                    if (*it != EPS) target.insert(*it);
+                    if (*it != EPS) addFollow(B, *it, why, changed);
                 }
                 if (f.count(EPS) > 0) {
-                    const set<string>& fl = follow(p.lhs);
-                    for (set<string>::const_iterator it = fl.begin(); it != fl.end(); ++it) {
-                        target.insert(*it);
-                    }
+                    why.kind = FollowReason::FOLLOW_OF_LHS;
+                    vector<string> fl(follow(p.lhs).begin(), follow(p.lhs).end());
+                    for (size_t t = 0; t < fl.size(); ++t) addFollow(B, fl[t], why, changed);
                 }
-                if (target.size() != before) changed = true;
             }
         }
     }
+}
+
+const FollowReason* FirstFollow::followReason(const string& symbol, const string& terminal) const {
+    map<string, map<string, FollowReason> >::const_iterator s = followWhy_.find(symbol);
+    if (s == followWhy_.end()) return 0;
+    map<string, FollowReason>::const_iterator t = s->second.find(terminal);
+    return t == s->second.end() ? 0 : &t->second;
 }
 
 void FirstFollow::printFirst(ostream& os) const {

@@ -1,0 +1,1 @@
+--lalr-method dp --verify-lalr

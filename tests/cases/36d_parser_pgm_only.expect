@@ -1,0 +1,5 @@
+# Test 36: --parser pgm prints only the PGM trace; the comparison still covers all four
+STEPS 9-10  PARSE WITH PGM
+!STEPS 9-10  PARSE WITH SLR
+RESULT SLR ACCEPTED
+RESULT PGM ACCEPTED

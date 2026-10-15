@@ -16,6 +16,8 @@ string Action::toString(const Grammar& g) const {
                    g.production(value).toString() + ")";
         case ActionType::ACCEPT:
             return "accept";
+        case ActionType::ERROR:
+            return "error";
     }
     return "?";
 }
@@ -31,7 +33,15 @@ const Action* ParsingTable::findAction(int state, const string& symbol) const {
 int ParsingTable::srConflicts() const {
     int n = 0;
     for (size_t k = 0; k < conflicts.size(); ++k) {
-        if (conflicts[k].kind == "shift/reduce") ++n;
+        if (conflicts[k].kind == "shift/reduce" && !conflicts[k].byPrecedence) ++n;
+    }
+    return n;
+}
+
+int ParsingTable::srPrecConflicts() const {
+    int n = 0;
+    for (size_t k = 0; k < conflicts.size(); ++k) {
+        if (conflicts[k].kind == "shift/reduce" && conflicts[k].byPrecedence) ++n;
     }
     return n;
 }
@@ -40,6 +50,40 @@ int ParsingTable::rrConflicts() const {
     int n = 0;
     for (size_t k = 0; k < conflicts.size(); ++k) {
         if (conflicts[k].kind == "reduce/reduce") ++n;
+    }
+    return n;
+}
+
+// Raw conflicts: cells with more than one candidate action, before any resolution
+int ParsingTable::rawSrConflicts() const {
+    int n = 0;
+    map<int, map<string, vector<Action> > >::const_iterator row;
+    for (row = candidates.begin(); row != candidates.end(); ++row) {
+        map<string, vector<Action> >::const_iterator cell;
+        for (cell = row->second.begin(); cell != row->second.end(); ++cell) {
+            bool shift = false;
+            bool reduce = false;
+            for (size_t k = 0; k < cell->second.size(); ++k) {
+                if (cell->second[k].type == ActionType::SHIFT) shift = true;
+                else reduce = true;
+            }
+            if (shift && reduce) ++n;
+        }
+    }
+    return n;
+}
+
+int ParsingTable::rawRrConflicts() const {
+    int n = 0;
+    map<int, map<string, vector<Action> > >::const_iterator row;
+    for (row = candidates.begin(); row != candidates.end(); ++row) {
+        map<string, vector<Action> >::const_iterator cell;
+        for (cell = row->second.begin(); cell != row->second.end(); ++cell) {
+            int reduces = 0;
+            for (size_t k = 0; k < cell->second.size(); ++k)
+                if (cell->second[k].type != ActionType::SHIFT) ++reduces;
+            if (reduces > 1) ++n;
+        }
     }
     return n;
 }
@@ -62,6 +106,110 @@ int ParsingTable::gotoEntries() const {
     return n;
 }
 
+// Conflict check
+namespace {
+
+struct Inserter {
+    const Grammar& g;
+    ParsingTable& t;
+    Inserter(const Grammar& gg, ParsingTable& tt) : g(gg), t(tt) {}
+
+    void remember(int state, const string& sym, const Action& a) {
+        vector<Action>& cands = t.candidates[state][sym];
+        if (find(cands.begin(), cands.end(), a) == cands.end()) cands.push_back(a);
+    }
+
+    // Shift/reduce by precedence; false when either side has no precedence
+    bool byPrecedence(const Action& shift, const Action& reduce, const string& sym,
+                      Action& winner, string& text) {
+        int pp = g.productionPrecedence(reduce.value);
+        int pa = g.precedenceOf(sym);
+        if (pp == 0 || pa == 0) return false;
+        string psym = g.production(reduce.value).precSymbol;
+        string cmp = pp > pa ? ">" : pp < pa ? "<" : "=";
+        string why = "(precedence: '" + psym + "' " + cmp + " '" + sym + "'";
+        if (pp > pa) {
+            winner = reduce;
+            text = "resolved by REDUCE " + why + ")";
+        } else if (pp < pa) {
+            winner = shift;
+            text = "resolved by SHIFT " + why + ")";
+        } else if (g.assocOf(sym) == Assoc::LEFT) {
+            winner = reduce;
+            text = "resolved by REDUCE " + why + ", %left)";
+        } else if (g.assocOf(sym) == Assoc::RIGHT) {
+            winner = shift;
+            text = "resolved by SHIFT " + why + ", %right)";
+        } else {
+            winner.type = ActionType::ERROR;
+            winner.value = 0;
+            text = "resolved as ERROR " + why + ", %nonassoc)";
+        }
+        return true;
+    }
+
+    void put(int state, const string& sym, const Action& incoming) {
+        remember(state, sym, incoming);
+        map<string, Action>& row = t.action[state];
+        map<string, Action>::iterator it = row.find(sym);
+        if (it == row.end()) {
+            row[sym] = incoming;
+            return;
+        }
+        Action& existing = it->second;
+        if (existing == incoming || existing.type == ActionType::ERROR) return;
+
+        Conflict c;
+        c.state = state;
+        c.symbol = sym;
+        c.existing = existing.toString(g);
+        c.incoming = incoming.toString(g);
+        t.conflictCells.insert(make_pair(state, sym));
+
+        bool existingShift = existing.type == ActionType::SHIFT;
+        bool incomingShift = incoming.type == ActionType::SHIFT;
+        bool existingReduce = existing.type == ActionType::REDUCE;
+        bool incomingReduce = incoming.type == ActionType::REDUCE;
+        bool existingAccept = existing.type == ActionType::ACCEPT;
+        bool incomingAccept = incoming.type == ActionType::ACCEPT;
+
+        if ((existingShift && incomingReduce) || (existingReduce && incomingShift)) {
+            c.kind = "shift/reduce";
+            Action sh = existingShift ? existing : incoming;
+            Action re = existingShift ? incoming : existing;
+            Action winner;
+            string text;
+            if (byPrecedence(sh, re, sym, winner, text)) {
+                c.byPrecedence = true;
+                c.resolution = text;
+                it->second = winner;
+            } else {
+                c.resolution = "resolved by SHIFT (default: shift preferred)";
+                if (incomingShift) it->second = incoming;
+            }
+            t.conflicts.push_back(c);
+        } else if (existingReduce && incomingReduce) {
+            c.kind = "reduce/reduce";
+            int keep = min(existing.value, incoming.value);
+            c.resolution = "resolved by REDUCE " + to_string(keep) +
+                           " (default: lower-numbered production)";
+            if (incoming.value == keep) it->second = incoming;
+            t.conflicts.push_back(c);
+        } else {
+            c.kind = "other";
+            if (existingAccept || incomingAccept) {
+                c.resolution = "accept kept";
+                if (incomingAccept) it->second = incoming;
+            } else {
+                c.resolution = "kept the first action";
+            }
+            t.conflicts.push_back(c);
+        }
+    }
+};
+
+}
+
 ParsingTable buildParsingTable(const Grammar& g, const FirstFollow& ff,
                                const LRMachine& machine) {
     ParsingTable t;
@@ -72,58 +220,6 @@ ParsingTable buildParsingTable(const Grammar& g, const FirstFollow& ff,
         t.stateNotes.push_back(machine.states[k].note);
     }
 
-    // Conflict check
-    struct Inserter {
-        const Grammar& g;
-        ParsingTable& t;
-        Inserter(const Grammar& gg, ParsingTable& tt) : g(gg), t(tt) {}
-        void put(int state, const string& sym, const Action& incoming) {
-            map<string, Action>& row = t.action[state];
-            map<string, Action>::iterator it = row.find(sym);
-            if (it == row.end()) {
-                row[sym] = incoming;
-                return;
-            }
-            Action& existing = it->second;
-            if (existing == incoming) return;
-
-            Conflict c;
-            c.state = state;
-            c.symbol = sym;
-            c.existing = existing.toString(g);
-            c.incoming = incoming.toString(g);
-
-            bool existingShift = existing.type == ActionType::SHIFT;
-            bool incomingShift = incoming.type == ActionType::SHIFT;
-            bool existingReduce = existing.type == ActionType::REDUCE;
-            bool incomingReduce = incoming.type == ActionType::REDUCE;
-            bool existingAccept = existing.type == ActionType::ACCEPT;
-            bool incomingAccept = incoming.type == ActionType::ACCEPT;
-
-            if ((existingShift && incomingReduce) || (existingReduce && incomingShift)) {
-                c.kind = "shift/reduce";
-                c.resolution = "resolved by SHIFT (shift preferred, dangling-else rule)";
-                if (incomingShift) it->second = incoming;
-                t.conflicts.push_back(c);
-            } else if (existingReduce && incomingReduce) {
-                c.kind = "reduce/reduce";
-                int keep = min(existing.value, incoming.value);
-                c.resolution = "resolved by keeping production " + to_string(keep) +
-                               " (" + g.production(keep).toString() + ")";
-                if (incoming.value == keep) it->second = incoming;
-                t.conflicts.push_back(c);
-            } else {
-                c.kind = "other";
-                if (existingAccept || incomingAccept) {
-                    c.resolution = "accept kept";
-                    if (incomingAccept) it->second = incoming;
-                } else {
-                    c.resolution = "kept the first action";
-                }
-                t.conflicts.push_back(c);
-            }
-        }
-    };
     // Shift and goto
     Inserter inserter(g, t);
     Action a;
@@ -162,11 +258,29 @@ ParsingTable buildParsingTable(const Grammar& g, const FirstFollow& ff,
                 set<string>::const_iterator fIt;
                 for (fIt = fl.begin(); fIt != fl.end(); ++fIt)
                     inserter.put((int)s, *fIt, a);
+            } else if (machine.kind == MachineKind::LR0) {
+                const vector<string>& terms = g.terminals();
+                for (size_t k = 0; k < terms.size(); ++k)
+                    inserter.put((int)s, terms[k], a);
             } else {
                 set<string>::const_iterator lIt;
                 for (lIt = item.lookaheads.begin();
                      lIt != item.lookaheads.end(); ++lIt)
                     inserter.put((int)s, *lIt, a);
+            }
+        }
+    }
+    // %nonassoc error entries become empty cells
+    map<int, map<string, Action> >::iterator row;
+    for (row = t.action.begin(); row != t.action.end(); ++row) {
+        map<string, Action>::iterator cell = row->second.begin();
+        while (cell != row->second.end()) {
+            if (cell->second.type == ActionType::ERROR) {
+                t.errorCells.insert(make_pair(row->first, cell->first));
+                row->second.erase(cell++);
+                ++t.nonassocErrors;
+            } else {
+                ++cell;
             }
         }
     }
@@ -182,7 +296,7 @@ string itemToString(const Grammar& g, const ItemRep& item, MachineKind kind) {
     }
     if (item.dot == (int)p.rhs.size()) s += " .";
     if (p.rhs.empty()) s += " .";
-    if (kind != MachineKind::SLR) {
+    if (kind != MachineKind::SLR && kind != MachineKind::LR0) {
         s += "  ,  ";
         if (item.lookaheads.empty()) s += "{}";
         else {
@@ -225,6 +339,7 @@ static string shortAction(const Action& a) {
         case ActionType::SHIFT: return "s" + to_string(a.value);
         case ActionType::REDUCE: return "r" + to_string(a.value);
         case ActionType::ACCEPT: return "acc";
+        case ActionType::ERROR: return "err";
     }
     return "?";
 }
@@ -290,7 +405,12 @@ void printConflicts(ostream& os, const ParsingTable& t) {
     }
     os << t.name << " conflicts (" << t.conflicts.size() << "): "
        << t.srConflicts() << " shift/reduce, "
-       << t.rrConflicts() << " reduce/reduce.\n";
+       << t.rrConflicts() << " reduce/reduce";
+    if (t.srPrecConflicts() > 0)
+        os << ", " << t.srPrecConflicts() << " shift/reduce resolved by precedence";
+    if (t.nonassocErrors > 0)
+        os << " (" << t.nonassocErrors << " %nonassoc error entries)";
+    os << ".\n";
     for (size_t k = 0; k < t.conflicts.size(); ++k) {
         const Conflict& c = t.conflicts[k];
         os << "  [" << (k + 1) << "] state " << c.state << " on '" << c.symbol

@@ -1,0 +1,15 @@
+# Test 42: Fibonacci numbers below 100, checked exactly
+OUTPUT 0
+OUTPUT 1
+OUTPUT 2
+OUTPUT 3
+OUTPUT 5
+OUTPUT 8
+OUTPUT 13
+OUTPUT 21
+OUTPUT 34
+OUTPUT 55
+OUTPUT 89
+!OUTPUT 144
+RUN ok steps=
+outputs=12

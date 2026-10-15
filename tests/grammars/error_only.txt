@@ -1,0 +1,4 @@
+# Error production with nothing after error
+P  -> SL
+SL -> SL S | S
+S  -> id ; | error

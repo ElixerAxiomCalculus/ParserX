@@ -1,0 +1,4 @@
+# Test 34: SLR and LALR reduce 5 times on relop before failing; CLR fails at once
+re:^RESULT SLR REJECTED .* reduces=5 
+re:^RESULT LALR REJECTED .* reduces=5 
+re:^RESULT CLR REJECTED .* reduces=0 

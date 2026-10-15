@@ -1,0 +1,5 @@
+# Test 33: array size must be a num
+RESULT SLR REJECTED token=real line=1 col=9 
+RESULT LALR REJECTED token=real line=1 col=9 
+RESULT CLR REJECTED token=real line=1 col=9 
+EXIT 1

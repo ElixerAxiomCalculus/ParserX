@@ -1,0 +1,2 @@
+# Test 40: one spurious SLR reduce cell (R -> L on =)
+PRECISION SLR=4 LALR=3 PGM=3 CLR=0 spurious_reduce_slr_vs_lalr=1 

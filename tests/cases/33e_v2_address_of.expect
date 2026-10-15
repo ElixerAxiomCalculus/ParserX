@@ -1,0 +1,6 @@
+# Test 33: address-of an l-value
+RESULT SLR ACCEPTED
+RESULT LALR ACCEPTED
+RESULT CLR ACCEPTED
+TREE CLR: [S [A p = [U & x]] ;]
+TREE SLR: [S [A p = [U & x]] ;]

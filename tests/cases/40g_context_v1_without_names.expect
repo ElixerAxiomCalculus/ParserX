@@ -1,0 +1,4 @@
+# Test 40: without %name the grammar symbols are used; SLR reduces first so its context is the enclosing ( E )
+CLR context: in an E "E + T", after 'b': expected ')' or an operator (* + - /)
+SLR context: in a F "( E )", after an E: expected ')' or an operator (+ -)
+  Context:         in a F "( E )"

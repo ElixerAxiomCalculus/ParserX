@@ -1,0 +1,3 @@
+%lexer lex_nested.lex
+S -> S T | T
+T -> kw | hex | chain | name

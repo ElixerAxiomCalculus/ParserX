@@ -1,0 +1,6 @@
+# Test 35: DeRemer-Pennello LALR equals merged-CLR LALR and PGM invariants hold on every grammar
+!FAILED
+re:^CHECKED [0-9]+ grammars$
+VERIFY LALR dp==merge OK (37 states, 185 ACTION/GOTO cells compared)
+VERIFY LALR dp==merge OK (103 states, 1004 ACTION/GOTO cells compared)
+VERIFY PGM states LALR=13 <= PGM=14 <= CLR=14 OK

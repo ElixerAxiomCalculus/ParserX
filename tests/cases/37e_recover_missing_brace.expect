@@ -1,0 +1,2 @@
+# Test 37 (edge): missing } at end of file
+re:^RECOVERY CLR errors=1 skipped=0 first=2:1 stopped=

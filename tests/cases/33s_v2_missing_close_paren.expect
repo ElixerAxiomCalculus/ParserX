@@ -1,0 +1,5 @@
+# Test 33: missing ) after the condition
+RESULT SLR REJECTED token=id line=1 col=12 
+RESULT LALR REJECTED token=id line=1 col=12 
+RESULT CLR REJECTED token=id line=1 col=12 
+EXIT 1

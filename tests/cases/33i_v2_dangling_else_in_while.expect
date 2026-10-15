@@ -1,0 +1,6 @@
+# Test 33: dangling else inside a while joins the inner if
+RESULT SLR ACCEPTED
+RESULT LALR ACCEPTED
+RESULT CLR ACCEPTED
+TREE CLR: [S while ( [BN a < b] ) [S if ( [BN c < d] ) [S [A x = 1] ;] else [S [A x = 2] ;]]]
+TREE SLR: [S while ( [BN a < b] ) [S if ( [BN c < d] ) [S [A x = 1] ;] else [S [A x = 2] ;]]]

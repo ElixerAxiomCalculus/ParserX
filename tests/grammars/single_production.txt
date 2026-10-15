@@ -1,0 +1,2 @@
+# Only the start transition is a non-terminal transition
+S -> a

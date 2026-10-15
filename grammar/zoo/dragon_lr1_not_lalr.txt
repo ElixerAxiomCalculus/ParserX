@@ -1,0 +1,6 @@
+# Zoo: Aho, Lam, Sethi & Ullman, Example 4.58: LR(1) but not LALR(1); the
+# two states for c . merge into one with a reduce/reduce conflict.
+# expected: LR(1) not-LALR(1)
+S -> a A d | b B d | a B e | b A e
+A -> c
+B -> c

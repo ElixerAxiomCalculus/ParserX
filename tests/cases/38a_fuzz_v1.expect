@@ -1,0 +1,7 @@
+# Test 38: differential fuzzing of v1 (seed 20261015): all parsers agree, CLR detects every error with 0 extra reductions
+Inputs: 1500 (300 generated sentences + 1200 mutants); reference CLR accepts 347, rejects 1153
+FUZZ SLR inputs=1500 accepted=347 mean_delay=0.233 max_delay=8 mean_expected=4.310
+FUZZ CLR inputs=1500 accepted=347 mean_delay=0.000 max_delay=0 mean_expected=3.722
+FUZZ AGREEMENT inputs=1500 agree=1500 disagreements=0
+FUZZ INVARIANTS OK
+EXIT 0

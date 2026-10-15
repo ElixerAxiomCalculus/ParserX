@@ -1,0 +1,5 @@
+# Test 33: missing ; at end of input
+RESULT SLR REJECTED token=$ line=2 col=1 
+RESULT LALR REJECTED token=$ line=2 col=1 
+RESULT CLR REJECTED token=$ line=2 col=1 
+EXIT 1

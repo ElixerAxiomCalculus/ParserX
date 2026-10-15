@@ -1,0 +1,6 @@
+# Test 33: initialised float declaration
+RESULT SLR ACCEPTED
+RESULT LALR ACCEPTED
+RESULT CLR ACCEPTED
+TREE CLR: [S [D float x = 1.5] ;]
+TREE SLR: [S [D float x = 1.5] ;]

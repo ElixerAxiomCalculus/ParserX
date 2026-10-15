@@ -1,0 +1,4 @@
+# Test 32: unknown character gives the same lexical error format as the v1 lexer
+Line 1, Column 7: unknown character '@'
+RESULT LEXICAL-ERROR symbol='@' line=1 col=7
+EXIT 3

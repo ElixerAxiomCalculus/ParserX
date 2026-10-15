@@ -1,0 +1,6 @@
+# Test 33: *p = x ; is an assignment through an l-value
+RESULT SLR ACCEPTED
+RESULT LALR ACCEPTED
+RESULT CLR ACCEPTED
+TREE CLR: [S [A [L * p] = x] ;]
+TREE SLR: [S [A [L * p] = x] ;]

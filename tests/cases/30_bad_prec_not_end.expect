@@ -1,0 +1,2 @@
+# Test 30 (edge): grammar directive error reported with its line number
+RESULT GRAMMAR-ERROR line 2: %prec must be followed by one symbol at the end of an alternative

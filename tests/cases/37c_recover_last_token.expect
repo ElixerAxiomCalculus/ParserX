@@ -1,0 +1,2 @@
+# Test 37 (edge): error on the last token stops at end of input
+RECOVERY CLR errors=1 skipped=0 first=2:1 stopped="end of input reached while looking for a sync token"

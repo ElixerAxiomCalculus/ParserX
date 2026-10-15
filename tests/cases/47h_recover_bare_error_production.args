@@ -1,0 +1,1 @@
+--grammar tests/grammars/error_only.txt --recover

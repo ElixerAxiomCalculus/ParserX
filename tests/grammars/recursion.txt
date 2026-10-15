@@ -1,0 +1,4 @@
+# Left recursion (L) and right recursion (R) in one grammar
+S -> L | R
+L -> L x | y
+R -> z R | z

@@ -1,0 +1,4 @@
+# Test 29: %left makes - left associative
+TREE SLR: [E [E a - b] - c]
+TREE LALR: [E [E a - b] - c]
+TREE CLR: [E [E a - b] - c]

@@ -1,0 +1,3 @@
+# Test 46 (edge): the scaling series is skipped when the input is not a valid program
+skipped: the input repeated twice is not a valid program
+re:^BENCH parse SLR 

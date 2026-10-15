@@ -1,0 +1,22 @@
+# Zoo: a C expression subset following the C standard's layering:
+# comma, assignment (right recursive, unary on the left), conditional,
+# || && == != < >, + -, * /, prefix ++ - * &, postfix [] () ++.
+# expected: SLR(1) not-LR(0)
+# Why: unlike S -> L = R | R, the item that competes with the shift of an
+# assignment operator is mul -> unary . and '=' / '+=' are not in
+# FOLLOW(mul) (only in FOLLOW(unary)), so SLR has no conflict; LR(0) fails
+# on states such as add -> mul . / mul -> mul . * unary.
+expr     -> assign | expr , assign
+assign   -> cond | unary assignop assign
+assignop -> = | +=
+cond     -> lor | lor ? expr : cond
+lor      -> lor || land | land
+land     -> land && eq | eq
+eq       -> eq == rel | eq != rel | rel
+rel      -> rel < add | rel > add | add
+add      -> add + mul | add - mul | mul
+mul      -> mul * unary | mul / unary | unary
+unary    -> postfix | ++ unary | - unary | * unary | & unary
+postfix  -> primary | postfix [ expr ] | postfix ( ) | postfix ( args ) | postfix ++
+args     -> assign | args , assign
+primary  -> id | num | ( expr )

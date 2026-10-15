@@ -1,0 +1,7 @@
+# Zoo: Aho, Lam, Sethi & Ullman, grammar (4.49): assignments and pointer
+# dereference. The classic example that is LALR(1) but not SLR(1)
+# ('=' is in FOLLOW(R)).
+# expected: LALR(1) not-SLR(1)
+S -> L = R | R
+L -> * R | id
+R -> L

@@ -1,0 +1,4 @@
+# Test 39: witnesses are also found for every precedence-resolved conflict cell of the expression grammar
+EXPLAIN SLR precedence_cells=20 verified=20
+EXPLAIN CLR precedence_cells=40 verified=40
+EXPLAIN PGM precedence_cells=20 verified=20

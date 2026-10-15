@@ -1,0 +1,7 @@
+# Test 43: comb-vector lookups equal raw lookups for every (state, symbol) pair
+COMPRESS SLR raw_bytes=1702 packed_bytes=482 ratio=0.283
+COMPRESS CLR raw_bytes=5106 packed_bytes=1410 ratio=0.276
+VERIFY COMPRESS SLR OK (620 cells checked)
+VERIFY COMPRESS CLR OK (1858 cells checked)
+VERIFY COMPRESS PGM OK
+!FAILED

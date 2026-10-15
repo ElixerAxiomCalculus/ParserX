@@ -1,0 +1,2 @@
+# Test 30 (edge): grammar directive error reported with its line number
+RESULT GRAMMAR-ERROR line 1: %prec uses 'UMINUS', which has no precedence declaration

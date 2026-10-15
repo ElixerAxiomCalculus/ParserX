@@ -1,0 +1,5 @@
+# Test 41: random grammar study (seed 20261015)
+re:^RANDOM grammars=300 seed=20261015 LR\(0\)=[0-9]+ SLR\(1\)=[0-9]+ LALR\(1\)=[0-9]+ LR\(1\)=[0-9]+ not-LR\(1\)=[0-9]+$
+re:^RANDOM mean_clr_lalr_state_ratio=[0-9]+\.[0-9]{3} mean_pgm_lalr_state_ratio=1\.000 
+Parameters: seed 20261015, 300 grammar(s)
+RANDOM grammars=300 seed=20261015 LR(0)=26 SLR(1)=70 LALR(1)=4 LR(1)=0 not-LR(1)=200

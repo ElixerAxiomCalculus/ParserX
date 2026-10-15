@@ -1,0 +1,6 @@
+# Test 36: on v1 PGM has LALR size (37 states) and one dangling-else conflict
+TABLE PGM states=37 action=157 goto=28 sr=1 rr=0
+CONFLICT PGM shift/reduce on 'else'
+RESULT PGM ACCEPTED steps=11
+TREE PGM: [S x = 5 ;]
+VERIFY PGM states LALR=37 <= PGM=37 <= CLR=111 OK

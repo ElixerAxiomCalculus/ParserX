@@ -1,0 +1,5 @@
+# Test 33: else with no if
+RESULT SLR REJECTED token=else line=1 col=1 
+RESULT LALR REJECTED token=else line=1 col=1 
+RESULT CLR REJECTED token=else line=1 col=1 
+EXIT 1

@@ -1,0 +1,2 @@
+%token x
+S -> x

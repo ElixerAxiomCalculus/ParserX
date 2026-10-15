@@ -1,0 +1,6 @@
+# Test 33: pointer declaration
+RESULT SLR ACCEPTED
+RESULT LALR ACCEPTED
+RESULT CLR ACCEPTED
+TREE CLR: [S [D [TY int *] p] ;]
+TREE SLR: [S [D [TY int *] p] ;]

@@ -1,0 +1,4 @@
+# Test 42: division by a constant zero is a warning, not an error
+SEMANTIC WARNING line 2 col 7: division by the constant zero
+RESULT SEMANTIC-OK warnings=1 declarations=1
+EXIT 0

@@ -1,0 +1,7 @@
+# Test 32 (edge): tabs and \r count as one column each, like the v1 lexer
+1     3     =       =
+1     5     num     1
+1     7     ;       ;
+2     2     id      y
+3     1     $       $
+RESULT SLR ACCEPTED

@@ -1,0 +1,5 @@
+# Nullable chain: A -> B C with B and C nullable (reads edges)
+S -> A x | y
+A -> B C
+B -> eps | b
+C -> eps | c

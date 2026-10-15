@@ -1,0 +1,6 @@
+# Test 33: ( a ) < b reads ( E ) as an operand
+RESULT SLR ACCEPTED
+RESULT LALR ACCEPTED
+RESULT CLR ACCEPTED
+TREE CLR: [S if ( [BN [F ( a )] < b] ) [S [A x = 1] ;]]
+TREE SLR: [S if ( [BN [F ( a )] < b] ) [S [A x = 1] ;]]

@@ -1,0 +1,6 @@
+# Test 44: CSV tables of the selected parser only
+EXPORT csv/clr_action.csv
+EXPORT csv/clr_goto.csv
+!EXPORT csv/slr_action.csv
+state,string,number,true,false,null,{,},",",:,[,],$
+state,value,object,members,pair,array,elements

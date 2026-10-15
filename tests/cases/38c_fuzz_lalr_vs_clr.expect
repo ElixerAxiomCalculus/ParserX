@@ -1,0 +1,7 @@
+# Test 38: LR(1)-not-LALR(1) grammar: every disagreement comes from the merged LALR state; PGM matches CLR
+FUZZ AGREEMENT inputs=1000 agree=871 disagreements=129 explained=129 lalr_merged=129/129
+FUZZ LALR inputs=1000 accepted=133 
+FUZZ PGM inputs=1000 accepted=262 mean_delay=0.000 max_delay=0 mean_expected=1.541 median_delay=0.000 valid_rejected=0
+Invariants (checked for parsers without reduce/reduce conflicts or %nonassoc errors: CLR PGM)
+[valid] b c d  -> SLR=rej LALR=rej CLR=acc PGM=acc
+FUZZ INVARIANTS OK

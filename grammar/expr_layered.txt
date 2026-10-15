@@ -1,0 +1,6 @@
+# Layered (unambiguous) expression grammar: precedence and associativity are
+# encoded in the E / T / F levels. Same language as grammar/expr_ambiguous.txt.
+# Pays for unit reductions such as F -> id, T -> F and E -> T.
+E -> E + T | E - T | T
+T -> T * F | T / F | F
+F -> - F | ( E ) | id | num

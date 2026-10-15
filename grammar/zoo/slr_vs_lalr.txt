@@ -1,0 +1,7 @@
+# Zoo: demo grammar (copy of grammar/slr_vs_lalr.txt).
+# expected: LALR(1) not-SLR(1)
+# Demo grammar: SLR fails here but LALR/CLR succeed.
+# Classic example:  S -> L = R | R ;  L -> * R | id ;  R -> L
+S -> L = R | R
+L -> * R | id
+R -> L

@@ -1,0 +1,6 @@
+# Test 33: for with every part present
+RESULT SLR ACCEPTED
+RESULT LALR ACCEPTED
+RESULT CLR ACCEPTED
+TREE CLR: [S for ( [A i = 0] ; [BN i < 10] ; [A i += 1] ) [S [A x = [E x + i]] ;]]
+TREE SLR: [S for ( [A i = 0] ; [BN i < 10] ; [A i += 1] ) [S [A x = [E x + i]] ;]]

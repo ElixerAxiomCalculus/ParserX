@@ -1,0 +1,3 @@
+# Test 35 (edge): only the start transition exists
+DeRemer-Pennello: 1 non-terminal transitions, 0 reads edges, 0 includes edges
+VERIFY LALR dp==merge OK (3 states

@@ -1,0 +1,5 @@
+# Zoo: the ambiguous expression grammar without precedence declarations
+# (Aho, Lam, Sethi & Ullman, grammar (4.3)).
+# expected: not-LR(1)
+# Why: id + id * id has two parse trees.
+E -> E + E | E * E | ( E ) | id

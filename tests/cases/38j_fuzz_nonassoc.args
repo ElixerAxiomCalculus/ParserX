@@ -1,0 +1,1 @@
+--grammar tests/grammars/prec_nonassoc.txt --fuzz 100

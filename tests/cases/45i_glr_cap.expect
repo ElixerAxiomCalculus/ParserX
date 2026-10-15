@@ -1,0 +1,2 @@
+# Test 45 (edge): 39 operators: the parse count saturates instead of overflowing
+re:^GLR accepted parses=(>=)?[0-9]+ 

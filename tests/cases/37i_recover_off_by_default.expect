@@ -1,0 +1,4 @@
+# Test 37: without --recover the parse stops at the first error and no RECOVERY line is printed
+!RECOVERY 
+!Recovery (
+RESULT CLR REJECTED token=; line=1 col=5 

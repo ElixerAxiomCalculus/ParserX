@@ -1,0 +1,5 @@
+# Test 42: runtime division by zero with its line number (exit code 5)
+OUTPUT 4
+RUNTIME ERROR line 4 col 7: division by zero
+RESULT RUNTIME-ERROR line=4 col=7 message="division by zero"
+EXIT 5

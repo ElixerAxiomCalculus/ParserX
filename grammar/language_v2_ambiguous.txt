@@ -1,0 +1,30 @@
+# Language v2 with an ambiguous expression and condition grammar made
+# deterministic by %left / %right / %nonassoc. Same statements and tokens as
+# grammar/language_v2.txt; used for the ambiguous-vs-layered experiment.
+%lexer     language_v2.lex
+%sync      ; }
+%recover   S
+
+%left     ||
+%left     &&
+%right    !
+%nonassoc relop
+%left     + -
+%left     * / %
+%right    UMINUS
+
+P   -> SL
+SL  -> SL S | S
+S   -> D ; | A ; | E ;
+S   -> if ( B ) S | if ( B ) S else S
+S   -> while ( B ) S
+S   -> for ( A ; B ; A ) S
+S   -> print ( E ) ;
+S   -> { SL } | { }
+D   -> TY id | TY id = E | TY id [ num ]
+TY  -> int | float | TY *
+A   -> L = E | L += E | L -= E
+L   -> id | id [ E ] | * E %prec UMINUS
+B   -> B || B | B && B | ! B | E relop E | ( B )
+E   -> E + E | E - E | E * E | E / E | E % E
+E   -> - E %prec UMINUS | & L | L | num | real | ( E )

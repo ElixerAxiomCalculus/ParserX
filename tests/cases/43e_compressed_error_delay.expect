@@ -1,0 +1,2 @@
+# Test 43: with default reductions even CLR reduces before it detects the error (same token as without compression)
+re:^RESULT CLR REJECTED token=relop line=1 col=7 step=[0-9]+ reduces=[1-9]

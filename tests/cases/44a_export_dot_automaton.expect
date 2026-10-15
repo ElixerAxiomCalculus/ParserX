@@ -1,0 +1,9 @@
+# Test 44: DOT export of the four automata
+EXPORT a_slr.dot
+EXPORT a_lalr.dot
+EXPORT a_clr.dot
+EXPORT a_pgm.dot
+digraph "SLR" {
+SLR EDGES 129
+color=red, penwidth=3
+CLR NODES 111

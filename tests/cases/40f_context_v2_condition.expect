@@ -1,0 +1,2 @@
+# Test 40: context inside a condition; * and - here are prefix operators
+CLR context: in a condition "expression relop expression", after '<': expected '&', '(', 'id', 'num', 'real' or a unary operator (* -)

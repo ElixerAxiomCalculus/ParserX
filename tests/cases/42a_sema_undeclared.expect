@@ -1,0 +1,4 @@
+# Test 42: use of an undeclared variable (exit code 5)
+SEMANTIC ERROR line 1 col 1: undeclared variable 'x'
+RESULT SEMANTIC-ERROR count=1 warnings=0
+EXIT 5

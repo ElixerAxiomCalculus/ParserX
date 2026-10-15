@@ -1,0 +1,2 @@
+int x ;
+while ( x < 1 ) x = 0 ;

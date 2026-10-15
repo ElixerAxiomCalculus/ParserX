@@ -1,0 +1,7 @@
+# Test 44: HTML trace
+<!doctype html>
+EXTERNAL SCRIPTS 0
+EXTERNAL STYLES 0
+"name":"SLR","accepted":true
+"name":"PGM","accepted":true
+if ( id relop id ) id = num ; else id = num ; $

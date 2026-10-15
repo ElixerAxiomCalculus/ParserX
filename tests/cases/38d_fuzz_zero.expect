@@ -1,0 +1,5 @@
+# Test 38 (edge): --fuzz 0 runs no inputs and reports zeros
+FUZZ AGREEMENT inputs=0 agree=0 disagreements=0
+FUZZ CLR inputs=0 accepted=0 mean_delay=0.000
+FUZZ INVARIANTS OK
+EXIT 0

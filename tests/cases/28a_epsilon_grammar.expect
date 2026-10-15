@@ -1,0 +1,13 @@
+# Test 28 (grammar/epsilon.txt): S -> A B, A -> a A | eps, B -> b B | eps
+# Every non-terminal is nullable; no conflicts; a a b is accepted
+Nullable non-terminals: S', S, A, B
+FOLLOW(S') = { $ }
+FOLLOW(A) = { $, b }
+re:^TABLE SLR states=8 .* sr=0 rr=0$
+re:^TABLE LALR states=8 .* sr=0 rr=0$
+re:^TABLE CLR states=8 .* sr=0 rr=0$
+reduce 3 (A -> eps)
+reduce 5 (B -> eps)
+TREE SLR: [S [A a [A a [A]]] [B b [B]]]
+TREE LALR: [S [A a [A a [A]]] [B b [B]]]
+TREE CLR: [S [A a [A a [A]]] [B b [B]]]

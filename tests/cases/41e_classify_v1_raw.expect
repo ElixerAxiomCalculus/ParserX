@@ -1,0 +1,4 @@
+# Test 41: v1 raw conflicts, counted before the dangling else is resolved
+CLASS not-LR(1) (possibly ambiguous)
+CLASS raw lr0=12 slr=1 lalr=1 clr=2 pgm=1
+STEP 8c  GRAMMAR CLASS

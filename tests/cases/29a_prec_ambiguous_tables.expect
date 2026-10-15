@@ -1,0 +1,13 @@
+# Test 29: ambiguous expression grammar + %left/%right; every operator conflict is resolved by precedence
+TABLE SLR states=17 action=86 goto=7 sr=0 rr=0 sr_prec=20 nonassoc=0
+TABLE LALR states=17 action=86 goto=7 sr=0 rr=0 sr_prec=20 nonassoc=0
+TABLE CLR states=32 action=147 goto=13 sr=0 rr=0 sr_prec=40 nonassoc=0
+shift/reduce resolved by precedence
+resolved by SHIFT (precedence: '+' < '*')
+resolved by REDUCE (precedence: '+' = '-', %left)
+!resolved by SHIFT (default
+RESULT SLR ACCEPTED steps=19
+RESULT LALR ACCEPTED steps=19
+RESULT CLR ACCEPTED steps=19
+TREE SLR: [E [E a + [E b * c]] - [E d / e]]
+TREE CLR: [E [E a + [E b * c]] - [E d / e]]

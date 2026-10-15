@@ -1,0 +1,5 @@
+# Test 28 (edge): empty input is a sentence of grammar/epsilon.txt (S derives eps)
+RESULT SLR ACCEPTED steps=4
+RESULT LALR ACCEPTED steps=4
+RESULT CLR ACCEPTED steps=4
+TREE SLR: [S [A] [B]]

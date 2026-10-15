@@ -1,0 +1,6 @@
+# Test 33: print and the % operator
+RESULT SLR ACCEPTED
+RESULT LALR ACCEPTED
+RESULT CLR ACCEPTED
+TREE CLR: [S print ( [T a % 2] ) ;]
+TREE SLR: [S print ( [T a % 2] ) ;]

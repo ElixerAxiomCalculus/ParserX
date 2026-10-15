@@ -1,0 +1,2 @@
+%right UMINUS
+E -> - %prec UMINUS E | id

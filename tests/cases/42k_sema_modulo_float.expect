@@ -1,0 +1,2 @@
+# Test 42: % needs int operands
+SEMANTIC ERROR line 3 col 7: '%' needs int operands, got int and float

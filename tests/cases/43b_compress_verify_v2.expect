@@ -1,0 +1,4 @@
+# Test 43: compression of the v2 tables
+COMPRESS CLR raw_bytes=39960 packed_bytes=7692 ratio=0.192
+VERIFY COMPRESS CLR OK (14515 cells checked)
+!FAILED

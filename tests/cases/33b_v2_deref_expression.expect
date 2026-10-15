@@ -1,0 +1,6 @@
+# Test 33: *p ; is an expression statement (F -> L)
+RESULT SLR ACCEPTED
+RESULT LALR ACCEPTED
+RESULT CLR ACCEPTED
+TREE CLR: [S [L * p] ;]
+TREE SLR: [S [L * p] ;]

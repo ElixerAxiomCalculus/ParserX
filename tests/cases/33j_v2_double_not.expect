@@ -1,0 +1,6 @@
+# Test 33: double negation and an empty block
+RESULT SLR ACCEPTED
+RESULT LALR ACCEPTED
+RESULT CLR ACCEPTED
+TREE CLR: [S if ( [BN ! [BN ! [BN ( [BN a < b] )]]] ) [S { }]]
+TREE SLR: [S if ( [BN ! [BN ! [BN ( [BN a < b] )]]] ) [S { }]]

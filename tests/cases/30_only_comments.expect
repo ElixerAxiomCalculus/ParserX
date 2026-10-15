@@ -1,0 +1,2 @@
+# Test 30 (edge): a file with only comments has no productions
+RESULT GRAMMAR-ERROR grammar file contains no productions

@@ -1,0 +1,10 @@
+# Test 37: panic-mode recovery reports three independent errors on three lines
+Recovery (panic mode): 3 error(s) reported, 5 token(s) skipped
+Error 1: line 1, column 5
+Error 2: line 3, column 9
+Error 3: line 5, column 11
+RECOVERY SLR errors=3 skipped=5 first=1:5
+RECOVERY LALR errors=3 skipped=5 first=1:5
+RECOVERY CLR errors=3 skipped=5 first=1:5
+RECOVERY PGM errors=3 skipped=5 first=1:5
+EXIT 1

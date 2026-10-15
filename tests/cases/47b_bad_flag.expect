@@ -1,0 +1,4 @@
+# Test 47 (edge): an unknown option prints the usage and exits with 4
+Error: unknown or incomplete option '--frobnicate'
+Usage: parserx
+EXIT 4

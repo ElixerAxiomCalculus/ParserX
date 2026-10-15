@@ -1,0 +1,11 @@
+# Ambiguous expression grammar made deterministic by precedence declarations.
+# Same language as grammar/expr_layered.txt: binary + - * /, unary minus,
+# parentheses, identifiers and numbers. Used for the ambiguous-vs-layered
+# experiment (fewer states and no unit reductions, but every operator
+# conflict is resolved by %left / %right).
+%left  + -
+%left  * /
+%right UMINUS
+E -> E + E | E - E | E * E | E / E
+E -> - E %prec UMINUS
+E -> ( E ) | id | num

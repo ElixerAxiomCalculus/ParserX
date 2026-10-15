@@ -1,0 +1,9 @@
+# Test 32 (edge): 1 MB input (87382 statements) lexes, parses with every parser and passes semantic analysis
+BYTES 1048592
+Tokens: 524296
+RESULT SLR ACCEPTED
+RESULT LALR ACCEPTED
+RESULT CLR ACCEPTED
+RESULT PGM ACCEPTED
+RESULT SEMANTIC-OK warnings=0 declarations=1
+EXIT 0

@@ -1,0 +1,4 @@
+# Test 39: 25 of 327 CLR precedence cells get no verified witness: the resolved CLR parser never enters them (finding, see RESULTS.md)
+EXPLAIN CLR precedence_cells=327 verified=302
+EXPLAIN LALR precedence_cells=41 verified=41
+!verified=no

@@ -80,4 +80,31 @@ inline std::string utilDirName(const std::string& path) {
     return path.substr(0, p);
 }
 
+inline bool utilParseInt(const std::string& text, int& out) {
+    if (text.empty()) return false;
+    size_t k = (text[0] == '-') ? 1 : 0;
+    if (k == text.size()) return false;
+    long v = 0;
+    for (; k < text.size(); ++k) {
+        if (!std::isdigit(static_cast<unsigned char>(text[k]))) return false;
+        v = v * 10 + (text[k] - '0');
+        if (v > 2000000000L) return false;
+    }
+    out = (int)(text[0] == '-' ? -v : v);
+    return true;
+}
+
+inline std::vector<std::string> utilToStrings(const std::vector<int>& v) {
+    std::vector<std::string> out;
+    for (size_t k = 0; k < v.size(); ++k) out.push_back(std::to_string(v[k]));
+    return out;
+}
+
+// Fixed 3-decimal formatting for machine-readable lines
+inline std::string utilFixed3(double v) {
+    std::ostringstream ss;
+    ss << std::fixed << std::setprecision(3) << v;
+    return ss.str();
+}
+
 #endif

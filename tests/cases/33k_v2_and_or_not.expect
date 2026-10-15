@@ -1,0 +1,6 @@
+# Test 33: && binds tighter than ||
+RESULT SLR ACCEPTED
+RESULT LALR ACCEPTED
+RESULT CLR ACCEPTED
+TREE CLR: [S if ( [B [BA [BN ( [BN a < b] )] && [BN ( [BN c > d] )]] || [BN ! [BN ( [BN e == f] )]]] ) [S [A x = 1] ;]]
+TREE SLR: [S if ( [B [BA [BN ( [BN a < b] )] && [BN ( [BN c > d] )]] || [BN ! [BN ( [BN e == f] )]]] ) [S [A x = 1] ;]]

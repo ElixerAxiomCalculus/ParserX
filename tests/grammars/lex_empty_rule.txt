@@ -1,0 +1,2 @@
+%lexer lex_empty_rule.lex
+S -> opt

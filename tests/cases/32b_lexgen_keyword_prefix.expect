@@ -1,0 +1,6 @@
+# Test 32 (edge): identifiers that start with a keyword stay identifiers
+1     1     id      iffy
+1     8     id      whileX
+1     17    id      int2
+2     1     print   print
+RESULT LALR ACCEPTED

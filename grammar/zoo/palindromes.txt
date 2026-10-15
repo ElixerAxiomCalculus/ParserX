@@ -1,0 +1,4 @@
+# Zoo: odd-length palindromes over a and b. Unambiguous but not LR(k) for
+# any k: the parser cannot know where the middle is.
+# expected: not-LR(1)
+S -> a S a | b S b | a | b

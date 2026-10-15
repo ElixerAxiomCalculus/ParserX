@@ -3,6 +3,15 @@
 *.o
 parser
 parserx
+unit_tests
 
-# Test output
+# Tests (kept local)
 tests/output/
+
+# Files written by --dot, --csv, --csv-tables and --html-trace
+*.dot
+*.csv
+trace*.html
+
+# Local project notes (not pushed)
+UPDATES.md

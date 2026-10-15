@@ -1,0 +1,4 @@
+# Test 40: context-aware message from kernel items and %name; CLR gives the exact expected set
+CLR context: in an assignment "l-value = expression", after '1': expected ';' or an operator (% * + - /)
+LALR context: in an assignment "l-value = expression", after '1': expected '&&', ')', '+=', '-=', ';', '=', ']', 'relop', '||' or an operator (% * + - /)
+  Expected one of: %, *, +, -, /, ;

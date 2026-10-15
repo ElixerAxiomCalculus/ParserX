@@ -1,0 +1,4 @@
+# %nonassoc makes a < b < c a syntax error; + binds tighter than <
+%nonassoc <
+%left     +
+E -> E < E | E + E | id

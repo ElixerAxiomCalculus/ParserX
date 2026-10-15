@@ -1,0 +1,4 @@
+# Test 36: on v2 PGM has 103 states and no SLR-style l-value conflict
+TABLE PGM states=103 action=810 goto=194 sr=1 rr=0
+!CONFLICT PGM shift/reduce on '='
+VERIFY PGM states LALR=103 <= PGM=103 <= CLR=444 OK

@@ -1,0 +1,6 @@
+# Test 33: ( a < b ) reads ( B ) as a condition
+RESULT SLR ACCEPTED
+RESULT LALR ACCEPTED
+RESULT CLR ACCEPTED
+TREE CLR: [S if ( [BN ( [BN a < b] )] ) [S [A x = 1] ;]]
+TREE SLR: [S if ( [BN ( [BN a < b] )] ) [S [A x = 1] ;]]

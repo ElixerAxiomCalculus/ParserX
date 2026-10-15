@@ -1,0 +1,2 @@
+# Test 42 (edge): array size must be positive
+SEMANTIC ERROR line 1 col 5: array 'a' must have a positive size

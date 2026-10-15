@@ -1,0 +1,4 @@
+# Test 38: recovery columns in the fuzz CSV
+FUZZ INVARIANTS OK
+SLR_recover_errors
+PGM_recover_errors,tokens

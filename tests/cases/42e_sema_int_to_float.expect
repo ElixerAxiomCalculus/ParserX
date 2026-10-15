@@ -1,0 +1,3 @@
+# Test 42: storing an int in a float is the documented widening coercion
+RESULT SEMANTIC-OK
+OUTPUT 1.5

@@ -1,0 +1,4 @@
+# Test 34: error delay at end of input inside a block
+re:^RESULT SLR REJECTED .* reduces=2 
+re:^RESULT LALR REJECTED .* reduces=2 
+re:^RESULT CLR REJECTED .* reduces=0 

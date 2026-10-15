@@ -1,0 +1,4 @@
+# Test 39: provenance for the classic S -> L = R | R grammar
+FOLLOW provenance: '=' in FOLLOW(R) because R appears at the end of L -> * R; '=' in FOLLOW(L) because '=' can begin what follows L in S -> L = R
+EXPLAIN SLR state=4 symbol='=' witness="id =" verified=yes cause="FOLLOW(R) <- FOLLOW(L) <- FIRST after L in S -> L = R"
+LALR: 0 conflict cell(s) to explain

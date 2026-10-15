@@ -1,0 +1,6 @@
+# Test 43: 5000 levels of nesting with compressed tables for all four parsers
+STEPS 9-10  PARSE WITH CLR (compressed table)
+RESULT SLR ACCEPTED
+RESULT LALR ACCEPTED
+RESULT CLR ACCEPTED
+RESULT PGM ACCEPTED

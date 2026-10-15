@@ -1,0 +1,22 @@
+int x ;
+float y = 1.5 ;
+int a [ 10 ] ;
+int * p ;
+int * * pp ;
+x = 3 ;
+x += 2 ;
+x -= 1 ;
+p = & x ;
+pp = & p ;
+* p = x + 1 ;
+* * pp = 7 ;
+* p ;
+a [ 2 ] = a [ x - 1 ] + 1 ;
+y = - - y ;
+if ( x < 10 ) x = x + 1 ;
+if ( ( a [ 1 ] ) < x ) x = 0 ; else { x = 1 ; }
+if ( ( x < 1 ) && ( x > 0 ) || ! ( x == 2 ) ) print ( x ) ;
+if ( ! ! ( x < y ) ) { }
+while ( x > 0 ) if ( x == 3 ) x -= 1 ; else x -= 2 ;
+for ( x = 0 ; x < 10 ; x += 1 ) { print ( x * 2 % 3 ) ; }
+print ( y / 2.0 ) ;

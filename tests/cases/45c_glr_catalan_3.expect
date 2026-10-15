@@ -1,0 +1,2 @@
+# Test 45: three operators in E -> E + E | E * E give Catalan(3) = 5 parses
+GLR accepted parses=5 

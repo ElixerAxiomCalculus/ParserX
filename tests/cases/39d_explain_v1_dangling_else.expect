@@ -1,0 +1,4 @@
+# Test 39: dangling else in v1; LALR inherits it from CLR states 103 and 107
+EXPLAIN SLR state=33 symbol='else' witness="if ( id relop id ) id = id ; else" verified=yes
+EXPLAIN CLR state=103 symbol='else' witness="if ( id relop id ) if ( id relop id ) id = id ; else" verified=yes
+cause: inherited from CLR state(s) { 103, 107 }, a conflict before merging

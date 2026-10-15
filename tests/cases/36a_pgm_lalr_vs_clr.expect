@@ -1,0 +1,6 @@
+# Test 36: PGM keeps CLR power: no conflict and b c d accepted, unlike SLR and LALR
+TABLE PGM states=14 action=17 goto=5 sr=0 rr=0
+!CONFLICT PGM
+RESULT PGM ACCEPTED steps=6
+RESULT LALR REJECTED
+VERIFY PGM states LALR=13 <= PGM=14 <= CLR=14 OK

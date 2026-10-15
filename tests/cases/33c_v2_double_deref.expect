@@ -1,0 +1,6 @@
+# Test 33: double dereference on the left
+RESULT SLR ACCEPTED
+RESULT LALR ACCEPTED
+RESULT CLR ACCEPTED
+TREE CLR: [S [A [L * [L * p]] = 1] ;]
+TREE SLR: [S [A [L * [L * p]] = 1] ;]

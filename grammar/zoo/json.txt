@@ -1,0 +1,11 @@
+# Zoo: JSON (RFC 8259) values, objects, arrays. Tokens come from json.lex.
+# expected: LR(0)
+# Why: no LR(0) state mixes a completed item with a shift or a second
+# completed item (lists are left recursive and closed by ] or }).
+%lexer json.lex
+value   -> object | array | string | number | true | false | null
+object  -> { } | { members }
+members -> members , pair | pair
+pair    -> string : value
+array   -> [ ] | [ elements ]
+elements -> elements , value | value

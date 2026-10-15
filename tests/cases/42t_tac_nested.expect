@@ -1,0 +1,25 @@
+# Test 42: TAC for if/else nested in while, with short-circuit && and !, deterministic labels
+L1:
+    t1 = x < 3
+    if t1 goto L2
+    goto L3
+L2:
+    t2 = x == 1
+    if t2 goto L7
+    goto L5
+L7:
+    t3 = x > 2
+    if t3 goto L5
+    goto L4
+L4:
+    t4 = x
+    t5 = t4 + 2
+    x = t5
+    goto L6
+L5:
+    t6 = x + 1
+    x = t6
+L6:
+    goto L1
+L3:
+TAC lines=24

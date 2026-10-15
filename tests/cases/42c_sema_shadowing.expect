@@ -1,0 +1,7 @@
+# Test 42: an inner block may shadow x; TAC renames the inner one x_1
+RESULT SEMANTIC-OK warnings=0 declarations=2
+    decl float x_1
+    print x_1
+OUTPUT 2.5
+OUTPUT 1
+EXIT 0

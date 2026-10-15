@@ -1,0 +1,6 @@
+# Test 33: array declaration
+RESULT SLR ACCEPTED
+RESULT LALR ACCEPTED
+RESULT CLR ACCEPTED
+TREE CLR: [S [D int a [ 10 ]] ;]
+TREE SLR: [S [D int a [ 10 ]] ;]

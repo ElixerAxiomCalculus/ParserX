@@ -1,0 +1,5 @@
+# Zoo: Aho, Lam, Sethi & Ullman, grammar (4.55), the canonical LR(1) example.
+# expected: LR(0)
+# Why: every LR(0) state with a completed item contains nothing else.
+S -> C C
+C -> c C | d

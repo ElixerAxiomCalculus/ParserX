@@ -1,0 +1,5 @@
+# Test 37: Yacc-style error productions (S -> error ;) resynchronise at ;
+Recovery (error productions): 2 error(s) reported, 2 token(s) skipped
+Error 2: line 1, column 19
+RECOVERY LALR errors=2 skipped=2 first=1:5
+RECOVERY CLR errors=2 skipped=2 first=1:5

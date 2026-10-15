@@ -1,0 +1,4 @@
+# Test 38: %nonassoc rejects grammar sentences such as a < b < c, so no parser is checked against the generated sentences
+none)
+FUZZ CLR inputs=500 accepted=112 mean_delay=0.889 max_delay=2 mean_expected=1.773 median_delay=1.000 valid_rejected=49
+FUZZ INVARIANTS OK

@@ -1,0 +1,6 @@
+# Test 39: merge provenance shows which CLR state contributed each colliding lookahead
+merged from CLR states { 4, 7 }
+CLR 4:  reduce A -> c on { *d* }  reduce B -> c on { e }
+CLR 7:  reduce A -> c on { e }  reduce B -> c on { *d* }
+EXPLAIN LALR state=4 symbol='d' witness="a c d" verified=yes cause="created by merging CLR states { 4, 7 }, whose lookaheads collide"
+CLR: 0 conflict cell(s) to explain

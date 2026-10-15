@@ -1,0 +1,3 @@
+# Test 36: PGM handles the S -> L = R | R grammar like LALR
+TABLE PGM states=10 action=17 goto=7 sr=0 rr=0
+RESULT PGM ACCEPTED

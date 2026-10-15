@@ -1,0 +1,7 @@
+# Test 32: generated lexer takes the longest match: <= not <, && not &, += not +
+Lexer: generated from grammar/language_v2.lex (25 rules
+1     8     relop   <=
+1     13    &&      &&
+1     18    relop   <
+1     26    +=      +=
+RESULT CLR ACCEPTED

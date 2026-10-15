@@ -1,0 +1,4 @@
+# Test 37: a valid input reports zero errors
+RECOVERY CLR errors=0 skipped=0 first=-
+RESULT CLR ACCEPTED
+EXIT 0

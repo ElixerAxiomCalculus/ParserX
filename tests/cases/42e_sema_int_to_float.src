@@ -1,0 +1,4 @@
+int x = 3 ;
+float y ;
+y = x ;
+print ( y / 2 ) ;

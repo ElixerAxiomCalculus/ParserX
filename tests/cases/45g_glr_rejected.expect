@@ -1,0 +1,2 @@
+# Test 45: GLR rejects a syntax error
+GLR rejected token=2 

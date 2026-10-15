@@ -1,0 +1,5 @@
+# Test 31 (edge): a duplicate production is reported and ignored (no reduce/reduce conflict)
+Warning: line 1: duplicate production S -> id (ignored)
+Productions (2):
+re:^TABLE CLR .* rr=0$
+RESULT CLR ACCEPTED

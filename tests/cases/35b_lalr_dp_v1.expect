@@ -1,0 +1,7 @@
+# Test 35: --lalr-method dp gives the same parse; LALR states keep LR(0) numbering
+LALR table method: dp
+TABLE LALR states=37 action=157 goto=28 sr=1 rr=0
+CONFLICT LALR shift/reduce on 'else' state=33
+TREE LALR: [S if ( [C a > b] ) [S if ( [C c < d] ) [S x = 1 ;] else [S x = 2 ;]]]
+VERIFY LALR dp==merge OK
+EXIT 0

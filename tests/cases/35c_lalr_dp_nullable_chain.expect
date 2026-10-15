@@ -1,0 +1,4 @@
+# Test 35 (edge): A -> B C with nullable B and C gives reads edges
+re:^DeRemer-Pennello: .* [1-9][0-9]* reads edges
+VERIFY LALR dp==merge OK
+RESULT LALR ACCEPTED

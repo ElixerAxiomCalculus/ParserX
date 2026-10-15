@@ -1,0 +1,2 @@
+# Test 40 (edge): error on the first token
+CLR context: at the start of the input: expected '&', '(', 'float', 'for', 'id', 'if', 'int', 'num', 'print', 'real', 'while', '{' or a unary operator (* -)

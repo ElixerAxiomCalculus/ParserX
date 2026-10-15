@@ -1,0 +1,2 @@
+# Test 40: PGM is exactly as precise as CLR on the LR(1)-not-LALR(1) grammar
+PRECISION SLR=4 LALR=4 PGM=0 CLR=0 

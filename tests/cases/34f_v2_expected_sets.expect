@@ -1,0 +1,4 @@
+# Test 34: CLR lists only the tokens that can really follow; SLR and LALR (merged state) list 14
+RESULT CLR REJECTED token=$ line=2 col=1 step=4 reduces=0 expected=% * + - / ;
+RESULT SLR REJECTED token=$ line=2 col=1 step=4 reduces=0 expected=% && ) * + += - -= / ; = ] relop ||
+RESULT LALR REJECTED token=$ line=2 col=1 step=4 reduces=0 expected=% && ) * + += - -= / ; = ] relop ||

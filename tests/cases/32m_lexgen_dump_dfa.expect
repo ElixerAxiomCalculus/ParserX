@@ -1,0 +1,4 @@
+# Test 32: --dump-dfa prints the minimised DFA
+re:^DFA: [0-9]+ states, start 0$
+re:accepts relop
+minimised 29 states

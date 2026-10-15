@@ -1,0 +1,1 @@
+while ( a < b ) if ( c < d ) x = 1 ; else x = 2 ;

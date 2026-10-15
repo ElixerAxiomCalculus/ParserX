@@ -1,0 +1,5 @@
+# Test 33: one program using every v2 statement form
+RESULT SLR ACCEPTED steps=582
+RESULT LALR ACCEPTED steps=582
+RESULT CLR ACCEPTED steps=582
+EXIT 0
